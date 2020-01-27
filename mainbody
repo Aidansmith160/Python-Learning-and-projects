@@ -1,0 +1,35 @@
+import csv
+import random
+import pandas as pd
+import numpy as np
+verbs=pd.read_csv('u_participle.csv')
+answer =""
+while True:
+  if answer == 'quit':
+    quit("You have quit")
+  selection=(verbs.sample())
+  print("What is the past participle of "+ selection.iloc[0,0]+'?')
+  answer= input('The answer is: ')
+  while answer != selection.iloc[0,2]:
+    if answer == selection.iloc[0,2]:
+      break
+    if answer == 'quit':
+      break
+    if answer == 'hint':
+      print("The last letter is -"+selection.iloc[0,2][-1])
+      answer= input('The answer is: ')
+      continue
+    if answer == 'english':
+      print(selection.iloc[0,1])
+      answer= input('The answer is: ')
+      continue
+    if answer== "next":
+      print("You quitter!")
+      print("The answer was "+selection.iloc[0,2])
+      break
+    else: 
+        print('Incorrect try again:')
+        answer= input('The answer is: ')
+  if answer !='quit' and answer != 'next':
+    print("Correct!")
+  print()
